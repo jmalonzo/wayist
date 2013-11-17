@@ -15,7 +15,7 @@ var wayist = angular.module('wayist', []);
         authors = [],
         authorContent = [];
 
-    $http.get('/wayist-ddj/ttch.json').success(function(response) {
+    $http.get('/wayist/ttch.json').success(function(response) {
       data = response[0];
       if (!data) return;
 

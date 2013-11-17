@@ -57,6 +57,7 @@ def parse(filename):
                 author_content[chap] += line
             else:
                 chap, _, verse = line.partition(' ')
+                chap = unicode(abs(float(chap)))
                 author_content[chap] = verse
 
     return collections.OrderedDict(sorted(author_content.items(),

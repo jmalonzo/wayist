@@ -8,6 +8,12 @@ var wayist = angular.module('wayist', []);
     angular.bootstrap(document, ["wayist"]);
   });
 
+  wayist.filter('capitalize', function() {
+    return function(input) {
+      return input.charAt(0).toUpperCase() + input.substring(1);
+    };
+  });
+
   wayist.controller('AppController', ["$scope", "$http", function($scope, $http) {
 
     // Initialize the data
@@ -21,14 +27,12 @@ var wayist = angular.module('wayist', []);
 
       // Cache the authors
       // FIXME in localstorage too
-      var authorName = '';
       for (var a in data) {
         if (!data.hasOwnProperty(a)) {
           continue;
         }
 
-        authorName = a.charAt(0).toUpperCase() + a.substring(1);
-        authors.push(authorName);
+        authors.push(a);
 
         var ac = data[a];
         var acc = [];
@@ -38,7 +42,7 @@ var wayist = angular.module('wayist', []);
           }
           acc.push(v + " " + ac[v]);
         }
-        authorContent.push({name: authorName, content: acc});
+        authorContent.push({name: a, content: acc});
 
       }
       authors = authors.sort();

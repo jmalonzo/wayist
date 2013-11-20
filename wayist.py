@@ -54,7 +54,7 @@ def parse(filename):
                 line = line.partition(' ')[2]
 
             if not is_float(line.partition(' ')[0]):
-                author_content[chap] += line
+                author_content[chap] += " " + line
             else:
                 chap, _, verse = line.partition(' ')
                 chap = unicode(abs(float(chap)))

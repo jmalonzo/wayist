@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# v5 - 05/12/2013
+# v6 - 05/12/2013
 index.html
 ttch.json
 style.css?v2
@@ -10,6 +10,6 @@ bootstrap.min.js?3.0.2
 angular.min.js?v1.2.2
 wayist.js?v2
 
-# Don't cache GA
+# All others.
 NETWORK:
-http://www.google-analytics.com/analytics.js
+*

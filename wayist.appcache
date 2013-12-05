@@ -1,11 +1,11 @@
 CACHE MANIFEST
-# v3 - 05/12/2013
+# v4 - 05/12/2013
 index.html
 ttch.json
-style.css
-bootstrap.min.css
-bootstrap-theme.min.css
+style.css?v2
+bootstrap.min.css?3.0.2
+bootstrap-theme.min.css?3.0.2
 jquery-2.0.3.min.js
-bootstrap.min.js
-angular.min.js
-wayist.js
+bootstrap.min.js?3.0.2
+angular.min.js?v1.2.2
+wayist.js?v2

@@ -14,7 +14,7 @@ var wayist = angular.module('wayist', []);
     };
   });
 
-  wayist.controller('AppController', ["$scope", "$http", function($scope, $http) {
+  wayist.controller('AppController', ["$scope", "$http", "$anchorScroll", function($scope, $http, $anchorScroll) {
 
     // Initialize the data
     var data,
@@ -25,8 +25,6 @@ var wayist = angular.module('wayist', []);
       data = response[0];
       if (!data) return;
 
-      // Cache the authors
-      // FIXME in localstorage too
       for (var a in data) {
         if (!data.hasOwnProperty(a)) {
           continue;
@@ -57,5 +55,9 @@ var wayist = angular.module('wayist', []);
     $scope.authorContent = function() {
       return authorContent;
     };
+
+    // Scroll accordingly..
+    $anchorScroll();
+
   }]);
 })();

@@ -1,5 +1,8 @@
 
-var wayist = angular.module('wayist', []);
+var wayist = angular.module('wayist', [])
+    .config(["$locationProvider", function($locationProvider) {
+      $locationProvider.html5Mode(true);
+    }]);
 
 (function() {
   "use strict";
@@ -14,7 +17,7 @@ var wayist = angular.module('wayist', []);
     };
   });
 
-  wayist.controller('AppController', ["$scope", "$http", "$anchorScroll", function($scope, $http, $anchorScroll) {
+  wayist.controller('AppController', ["$scope", "$http", "$location", "$anchorScroll", function($scope, $http, $location, $anchorScroll) {
 
     // Initialize the data
     var data,

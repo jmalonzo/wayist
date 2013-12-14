@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# v7 - 06/12/2013
+# v8 - 14/12/2013
 index.html
 ttch.json
 style.css?v2
@@ -7,7 +7,7 @@ bootstrap.min.css?3.0.3
 bootstrap-theme.min.css?3.0.3
 jquery-2.0.3.min.js
 bootstrap.min.js?3.0.3
-angular.min.js?v1.2.3
+angular.min.js?v1.2.5
 wayist.js?v4
 
 # All others.

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html manifest="wayist.appcache" ng-csp>
+<html ng-csp><!-- manifest="wayist.appcache"-->
   <head>
     <title>Wayist.org - Tao Te Ching Comparison</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,9 +12,11 @@
     <script type="text/javascript" src="/wayist/jquery-2.0.3.min.js"></script>
     <script type="text/javascript" src="/wayist/bootstrap.min.js?3.0.3"></script>
     <script type="text/javascript" src="/wayist/angular.min.js?v1.2.5"></script>
+    <script type="text/javascript" src="/wayist/spin.min.js?v1.3.2"></script>
     <script type="text/javascript" src="/wayist/wayist.js?v4"></script>
   </head>
   <body ng-controller="AppController">
+    <div class="spinner"></div>
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">

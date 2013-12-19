@@ -1,3 +1,16 @@
+
+/* wayist styles */
+.spinner {
+   background: #222;
+   float: left;
+   width: 200px;
+   height: 200px;
+   margin: 0 20px 20px 0;
+   -webkit-border-radius: 10px;
+   -moz-border-radius: 10px;
+   border-radius: 10px;
+}
+
 /*!
  * Copyright 2013 Twitter, Inc.
  *
@@ -31,11 +44,6 @@
  * Customizer
  * Miscellaneous
  */
-
-.spinner {
-   height: 100%;
-}
-
 
 /*
  * Scaffolding

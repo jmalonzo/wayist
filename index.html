@@ -38,7 +38,7 @@
     <div class="container bs-docs-container">
       <div class="row">
         <div class="col-md-3">
-          <div class="bs-sidebar hidden-print affix" role="complimentary">
+          <div class="bs-sidebar hidden-print affix" role="complimentary" spinner>
             <ul class="nav bs-sidenav">
               <li ng-repeat="author in authors()">
                 <a ng-href="#{{author}}">{{author | capitalize}}</a>
@@ -46,7 +46,7 @@
             </ul>
           </div>
         </div>
-        <div class="col-md-9" role="main" spinner>
+        <div class="col-md-9" role="main">
           <div class="bs-docs-section" ng-repeat="author in authorContent()">
             <div class="page-header">
               <h1 id="{{author.name}}">{{author.name | capitalize}}</h1>

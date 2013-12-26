@@ -86,8 +86,9 @@ def main():
     with open(os.path.join(DATA_DIR, AUTHORS + EXTENSION), 'wb') as f:
         f.write(json.dumps(authors.keys()))
 
-    # Each author version of the book is written out to a separate file
-    # mainly to speedup loading that version of the author
+    # For optimization purposes, each author translation of the book
+    # is written out to a separate file, loaded when that translation
+    # is selected, and cached for future access to that version.
     for author in authors:
         with open(os.path.join(DATA_DIR, author + EXTENSION), 'wb') as f:
             f.write(json.dumps([authors.get(author)]))

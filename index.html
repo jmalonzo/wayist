@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html ng-csp manifest="wayist.appcache">
+<html ng-csp ng-app="wayist"> <!-- manifest="wayist.appcache"-->
   <head>
     <title>Wayist.org - Tao Te Ching Comparison</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
-    <link type="text/css" rel="stylesheet" href="/wayist/css/way.css?v1"/>
-    <script type="text/javascript" src="/wayist/js/way.js?v2"></script>
+    <link type="text/css" rel="stylesheet" href="/wayist/css/way.min.css?v1"/>
+    <script type="text/javascript" src="/wayist/js/way.min.js?v1"></script>
   </head>
   <body>
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -33,7 +33,7 @@
           <div class="bs-sidebar hidden-print affix" role="complimentary">
             <ul class="nav bs-sidenav">
               <li ng-repeat="author in authors()">
-                <a ng-href="/wayist/{{author}}">{{author | capitalize}}</a>
+                <a ng-href="/wayist/#/{{author}}">{{author | capitalize}}</a>
               </li>
             </ul>
           </div>

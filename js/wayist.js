@@ -1,23 +1,19 @@
 
 var wayist = angular.module('wayist', ['ngRoute'])
     .config(["$locationProvider", "$routeProvider", function($locationProvider, $routeProvider) {
-      $locationProvider.html5Mode(true);
+//      $locationProvider.html5Mode(true);
       $routeProvider
-        .when('/wayist/:author', {
+        .when('/:author', {
           controller: 'ContentController',
           templateUrl: '/wayist/content.html'
         })
         .otherwise({
-          redirectTo: '/wayist/beck'
+          redirectTo: '/beck'
         });
     }]);
 
 (function() {
   "use strict";
-
-  angular.element(document).ready(function() {
-    angular.bootstrap(document, ["wayist"]);
-  });
 
   wayist.filter('capitalize', function() {
     return function(input) {
@@ -45,10 +41,9 @@ var wayist = angular.module('wayist', ['ngRoute'])
     };
   }]);
 
-  wayist.controller('AuthorController', ["$scope", "$http", "$anchorScroll", function($scope, $http, $anchorScroll) {
+  wayist.controller('AuthorController', ["$scope", "$http", function($scope, $http) {
     // Initialize the data
     var authors = [];
-
     $http.get("/wayist/data/authors.json").success(function(response) {
         authors = response;
       }).error(function() {
@@ -60,3 +55,4 @@ var wayist = angular.module('wayist', ['ngRoute'])
     };
   }]);
 })();
+

@@ -13,15 +13,19 @@ STYLE_FILES = \
 
 GENERATED_FILES = \
 	js/way.js \
-	css/way.css
+	js/way.min.js \
+	css/way.min.css
 
 all: $(GENERATED_FILES)
 
 js/way.js: $(LIBRARY_FILES)
-	node_modules/.bin/smash $(LIBRARY_FILES) | node_modules/.bin/uglifyjs - -c -m -o $@
+	node_modules/.bin/smash $(LIBRARY_FILES) > $@
 
-css/way.css: $(STYLE_FILES)
+js/way.min.js: js/way.js
+	node_modules/.bin/uglifyjs $< -c -m -o $@ --source-map $@.map --source-map-url /wayist/$@.map
+
+css/way.min.css: $(STYLE_FILES)
 	node_modules/.bin/uglifycss $(STYLE_FILES) > $@
 
 clean: $(GENERATED_FILES)
-	rm -f $(GENERATED_FILES)
+	rm -f $(GENERATED_FILES) js/*.map

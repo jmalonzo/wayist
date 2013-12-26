@@ -47,9 +47,7 @@ var wayist = angular.module('wayist', ['ngRoute'])
 
   wayist.controller('AuthorController', ["$scope", "$http", "$anchorScroll", function($scope, $http, $anchorScroll) {
     // Initialize the data
-    var data,
-        authors = [],
-        authorContent = [];
+    var authors = [];
 
     $http.get("/wayist/data/authors.json").success(function(response) {
         authors = response;

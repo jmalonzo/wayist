@@ -1,0 +1,14 @@
+{
+  "name": "wayist",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmalonzo/wayist.git"
+  },
+  "version": "0.0.1",
+  "dependencies": {
+    "smash": "0",
+    "uglify-js": "2",
+    "uglifycss": "0"
+  }
+
+}

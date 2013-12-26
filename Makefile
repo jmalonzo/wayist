@@ -23,6 +23,7 @@ js/way.js: $(LIBRARY_FILES)
 
 js/way.min.js: js/way.js
 	node_modules/.bin/uglifyjs $< -c -m -o $@ --source-map $@.map --source-map-url /wayist/$@.map
+	rm -f - js/way.js
 
 css/way.min.css: $(STYLE_FILES)
 	node_modules/.bin/uglifycss $(STYLE_FILES) > $@

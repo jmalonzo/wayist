@@ -12,10 +12,10 @@
     <script type="text/javascript" src="/wayist/jquery-2.0.3.min.js"></script>
     <script type="text/javascript" src="/wayist/bootstrap.min.js?3.0.3"></script>
     <script type="text/javascript" src="/wayist/angular.min.js?v1.2.5"></script>
-    <script type="text/javascript" src="/wayist/spin.min.js?v1.3.2"></script>
-    <script type="text/javascript" src="/wayist/wayist.js?v4"></script>
+    <script type="text/javascript" src="/wayist/angular-route.js?v1.2.5"></script>
+    <script type="text/javascript" src="/wayist/wayist.js?v5"></script>
   </head>
-  <body ng-controller="AppController">
+  <body>
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -37,22 +37,16 @@
 
     <div class="container bs-docs-container">
       <div class="row">
-        <div class="col-md-3">
-          <div class="bs-sidebar hidden-print affix" role="complimentary" spinner>
+        <div class="col-md-3" ng-controller="AuthorController">
+          <div class="bs-sidebar hidden-print affix" role="complimentary">
             <ul class="nav bs-sidenav">
               <li ng-repeat="author in authors()">
-                <a ng-href="#{{author}}">{{author | capitalize}}</a>
+                <a ng-href="{{author}}">{{author | capitalize}}</a>
               </li>
             </ul>
           </div>
         </div>
-        <div class="col-md-9" role="main">
-          <div class="bs-docs-section" ng-repeat="author in authorContent()">
-            <div class="page-header">
-              <h1 id="{{author.name}}">{{author.name | capitalize}}</h1>
-            </div>
-            <p ng-repeat="verse in author.content">{{verse}}</p>
-          </div>
+        <div class="col-md-9 ng-view" role="main">
         </div>
       </div>
     </div><!-- /.container -->

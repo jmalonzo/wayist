@@ -8,9 +8,11 @@ import sys
 
 import lxml.html as lh
 
+DATA_DIR = "data"
 EXCLUDE_DIRS = ['_borders']
 EXCLUDE_FILES = ['all_translations.htm', 'index.htm', 'indexchp.htm']
-
+EXTENSION = ".json"
+AUTHORS = "authors"
 
 def is_float(s):
     try:
@@ -80,8 +82,15 @@ def main():
                 print >> sys.stdout, "Processing %s" % f
                 authors[f.split('.')[0]] = parse(filename)
 
-    with open("ttch.json", "w") as t:
-        t.write(json.dumps([authors]))
+    # Write out the authors
+    with open(os.path.join(DATA_DIR, AUTHORS + EXTENSION), 'wb') as f:
+        f.write(json.dumps(authors.keys()))
+
+    # Each author version of the book is written out to a separate file
+    # mainly to speedup loading that version of the author
+    for author in authors:
+        with open(os.path.join(DATA_DIR, author + EXTENSION), 'wb') as f:
+            f.write(json.dumps([authors.get(author)]))
 
     print >> sys.stdout, "Processed %s authors" % len(authors.keys())
 

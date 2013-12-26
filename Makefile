@@ -1,4 +1,3 @@
-
 LIBRARY_FILES = \
 	js/jquery-2.0.3.js \
 	js/angular.js \

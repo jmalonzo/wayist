@@ -3,7 +3,7 @@ var wayist = angular.module('wayist', ['ngRoute'])
     .config(["$locationProvider", "$routeProvider", function($locationProvider, $routeProvider) {
       $locationProvider.html5Mode(true);
       $routeProvider
-        .when('/:author', {
+        .when('/wayist/:author', {
           controller: 'ContentController',
           templateUrl: '/wayist/content.html'
         })

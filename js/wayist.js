@@ -5,10 +5,10 @@ var wayist = angular.module('wayist', ['ngRoute'])
       $routeProvider
         .when('/:author', {
           controller: 'ContentController',
-          templateUrl: 'content.html'
+          templateUrl: '/wayist/content.html'
         })
         .otherwise({
-          redirectTo: '/beck'
+          redirectTo: '/wayist/beck'
         });
     }]);
 
@@ -28,7 +28,7 @@ var wayist = angular.module('wayist', ['ngRoute'])
   wayist.controller('ContentController', ["$scope", "$routeParams", "$http", function ($scope, $routeParams, $http) {
     var authorContent = [];
     $scope.author = $routeParams.author;
-    $http.get("/data/" + $routeParams.author + ".json").success(function(response) {
+    $http.get("/wayist/data/" + $routeParams.author + ".json").success(function(response) {
       var content = response[0];
       for (var c in content) {
         if (!content.hasOwnProperty(c)) {

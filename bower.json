@@ -1,0 +1,25 @@
+{
+  "name": "wayist.org-mirror",
+  "version": "0.0.0",
+  "homepage": "http://jmalonzo.github.io/wayist",
+  "authors": [
+    "Jan Alonzo <jmalonzo@gmail.com>"
+  ],
+  "description": "Tao Te Ching Comparison mirror of wayist.org",
+  "main": "js/wayist.js",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "2",
+    "angular": "1.2.6",
+    "angular-route": "1.2.6",
+    "bootstrap": "3"
+  }
+}

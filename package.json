@@ -4,11 +4,13 @@
     "type": "git",
     "url": "https://github.com/jmalonzo/wayist.git"
   },
-  "version": "0.0.1",
-  "dependencies": {
-    "smash": "0",
-    "uglify-js": "2",
-    "uglifycss": "0"
+  "version": "1.0.0",
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-clean": "0",
+    "grunt-contrib-cssmin": "0",
+    "grunt-contrib-uglify": "0",
+    "grunt-smash": "0"
   }
 
 }

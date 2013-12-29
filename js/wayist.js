@@ -7,7 +7,10 @@ var wayist = angular.module('wayist', ['ngRoute'])
           templateUrl: '/wayist/content.html'
         })
         .otherwise({
-          redirectTo: '/beck'
+          redirectTo: function() {
+            var author = window.localStorage.getItem('author');
+            return author ? "/" + author : "/beck";
+          }
         });
     }]);
 
@@ -30,6 +33,9 @@ var wayist = angular.module('wayist', ['ngRoute'])
           continue;
         }
         authorContent.push(c + ": " + content[c]);
+
+        // Store selected author in localStorage for future sessions
+        localStorage.setItem('author', $scope.author);
       }
     }).error(function() {
       // Do something here

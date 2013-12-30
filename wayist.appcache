@@ -1,9 +1,10 @@
 CACHE MANIFEST
-# v21 - 29/12/2013
+# v22 - 30/12/2013
 index.html
 content.html
 css/way.min.css
 js/way.min.js
+js/way.min.js.map
 data/authors.json
 data/beck.json
 data/blackney.json

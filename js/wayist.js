@@ -58,6 +58,12 @@ var wayist = angular.module('wayist', ['ngRoute'])
     $scope.authors = function() {
       return authors;
     };
+
+    $scope.selectedAuthor = function() {
+      var author = window.localStorage.getItem('author');    
+      return  author ? author : "by their respective authors.";
+    };
+
   }]);
 })();
 

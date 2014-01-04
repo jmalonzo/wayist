@@ -13,7 +13,7 @@ module.exports = function(grunt) {
             'bower_components/jquery/jquery.js',
             'bower_components/angular/angular.js',
             'bower_components/angular-route/angular-route.js',
-            'bower_components/bootstrap/js/dropdown.js',
+            'bower_components/bootstrap/dist/bootstrap.js',
             'js/wayist.js'
           ]
         }
@@ -41,6 +41,7 @@ module.exports = function(grunt) {
         },
         files: {
           'css/way.min.css': [
+            'bower_components/angular/angular-csp.css',
             'bower_components/bootstrap/dist/css/bootstrap.css',
             'bower_components/bootstrap/dist/css/bootstrap-theme.css',
             'css/style.css'
@@ -54,4 +55,6 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('default', ['smash', 'uglify', 'cssmin']);
+  grunt.registerTask('build', ['smash', 'uglify', 'cssmin']);
+  grunt.registerTask('clean', ['clean']);
 };

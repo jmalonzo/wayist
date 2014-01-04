@@ -14,6 +14,7 @@ module.exports = function(grunt) {
             'bower_components/angular/angular.js',
             'bower_components/angular-route/angular-route.js',
             'bower_components/bootstrap/dist/bootstrap.js',
+            'bower_components/bootstrap/js/dropdown.js',
             'js/wayist.js'
           ]
         }

@@ -4,6 +4,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-appcache');
 
   grunt.initConfig({
     smash: {
@@ -50,12 +51,26 @@ module.exports = function(grunt) {
         }
       }
     },
+    appcache: {
+      all: {
+        dest: 'wayist.appcache',
+        cache: [
+          'index.html',
+          'content.html',
+          'css/way.min.css',
+          'js/way.min.js',
+          'js/way.min.js.map',
+          'data/*.json'
+        ],
+        network: '*'
+      }
+    },
     clean: {
       build: ["build"]
     }
   });
 
-  grunt.registerTask('default', ['smash', 'uglify', 'cssmin']);
-  grunt.registerTask('build', ['smash', 'uglify', 'cssmin']);
+  grunt.registerTask('default', ['smash', 'uglify', 'cssmin', 'appcache']);
+  grunt.registerTask('build', ['smash', 'uglify', 'cssmin', 'appcache']);
   grunt.registerTask('clean', ['clean']);
 };

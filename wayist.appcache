@@ -1,5 +1,7 @@
 CACHE MANIFEST
-# v23 - 05/01/2014
+# rev 2 - 2014-01-05T02:28:09.432Z
+
+CACHE:
 index.html
 content.html
 css/way.min.css
@@ -34,6 +36,5 @@ data/wieger.json
 data/worldpeace.json
 data/wu.json
 
-# All others.
 NETWORK:
 *

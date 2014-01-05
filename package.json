@@ -10,7 +10,8 @@
     "grunt-contrib-clean": "0",
     "grunt-contrib-cssmin": "0",
     "grunt-contrib-uglify": "0",
-    "grunt-smash": "0"
+    "grunt-smash": "0",
+    "grunt-appcache": "0"
   }
 
 }

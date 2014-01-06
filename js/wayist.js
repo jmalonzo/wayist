@@ -48,15 +48,16 @@ var wayist = angular.module('wayist', ['ngRoute'])
 
   wayist.controller('AuthorController', ["$scope", "$http", function($scope, $http) {
     // Initialize the data
-    var authors = [];
-    $http.get("/wayist/data/authors.json").success(function(response) {
-        authors = response;
+    $scope.authorList = [];
+    $http.get("/wayist/data/authors.json")
+      .success(function(response) {
+        $scope.authorList = response;
       }).error(function() {
         // Do something here
       });
     
     $scope.authors = function() {
-      return authors;
+      return $scope.authorList;
     };
 
     $scope.selectedAuthor = function() {

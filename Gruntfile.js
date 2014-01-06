@@ -5,24 +5,24 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-appcache');
+  grunt.loadNpmTasks('grunt-karma');
 
   grunt.initConfig({
     smash: {
-      build: {
+      prod: {
         files: {
           'build/way.js': [
             'bower_components/jquery/jquery.js',
             'bower_components/angular/angular.js',
             'bower_components/angular-route/angular-route.js',
-            'bower_components/bootstrap/dist/bootstrap.js',
-            'bower_components/bootstrap/js/dropdown.js',
+            'bower_components/bootstrap/dist/js/bootstrap.js',
             'js/wayist.js'
           ]
         }
       }
     },
     uglify: {
-      build: {
+      prod: {
         options: {
           sourceMap: 'js/way.min.js.map',
           sourceMapRoot: '/wayist/js/',
@@ -37,7 +37,7 @@ module.exports = function(grunt) {
       }
     },
     cssmin: {
-      build: {
+      prod: {
         options: {
           report: 'min'
         },
@@ -66,11 +66,17 @@ module.exports = function(grunt) {
       }
     },
     clean: {
-      build: ["build"]
+      build: [
+        "build"
+      ],
+    },
+    karma: {
+      unit: {
+        configFile: 'karma.conf.js'
+      }
     }
   });
 
-  grunt.registerTask('default', ['smash', 'uglify', 'cssmin', 'appcache']);
-  grunt.registerTask('build', ['smash', 'uglify', 'cssmin', 'appcache']);
-  grunt.registerTask('clean', ['clean']);
+  grunt.registerTask('default', ['smash:prod', 'uglify:prod', 'cssmin:prod', 'appcache']);
+  grunt.registerTask('build', ['smash:prod', 'uglify:prod', 'cssmin:prod', 'appcache']);
 };

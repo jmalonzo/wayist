@@ -9,6 +9,31 @@ describe("wayist", function() {
     }));
   });
 
+  describe("ContentController", function() {
+    var $httpBackend, $rootScope, scope;
+    beforeEach(inject(function(_$rootScope_, _$httpBackend_, $controller) {
+      $httpBackend = _$httpBackend_;
+      $rootScope = _$rootScope_;
+      scope  = $rootScope.$new();
+      $controller("ContentController", {
+        $scope: scope,
+        $routeParams: {"author": "wu"}
+      });
+    }));
+
+    it("should be able to return content for a given author", function() {
+      $httpBackend.expect("GET", "/wayist/data/wu.json")
+        .respond([{
+          "1.1": "Test",
+          "1.2": "Test2"
+        }]);
+      var content = scope.content();
+      scope.$root.$digest();
+      $httpBackend.flush();
+      expect(content).toEqual(["1.1. Test", "1.2. Test2"]);
+    });
+  });
+
   describe("AuthorController", function() {
     var $httpBackend, $rootScope, scope, origLocalStorage;
     beforeEach(inject(function(_$rootScope_, _$httpBackend_, $controller) {

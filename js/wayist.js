@@ -32,7 +32,7 @@ var wayist = angular.module('wayist', ['ngRoute'])
         if (!content.hasOwnProperty(c)) {
           continue;
         }
-        authorContent.push(c + ": " + content[c]);
+        authorContent.push(c + ". " + content[c]);
 
         // Store selected author in localStorage for future sessions
         localStorage.setItem('author', $scope.author);

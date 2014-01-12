@@ -26,12 +26,12 @@
 # ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
+import argparse
 import collections
 import json
 import os
 import os.path
 import sys
-
 import lxml.html as lh
 
 DATA_DIR = "data"
@@ -39,6 +39,7 @@ EXCLUDE_DIRS = ['_borders']
 EXCLUDE_FILES = ['all_translations.htm', 'index.htm', 'indexchp.htm']
 EXTENSION = ".json"
 AUTHORS = "authors"
+CHAPTERS = "chapters"
 
 def is_float(s):
     try:
@@ -49,8 +50,27 @@ def is_float(s):
 
     return False
 
+def parse_chapter(filename):
+    with open(filename, "rb") as fn:
+        document = lh.parse(fn)
+        table = document.find("body").findall("table")[1]
+        sections = table.cssselect("tr table")
+        chapter_content = []
+        for sdx, section in enumerate(sections):
+            sxn_author_content = dict()
+            for idx, child in enumerate(section.iterchildren()):
+                author = child.cssselect("tr td:first-of-type strong")[0].text
+                if idx == 0:
+                    # Chapter/section header
+                    continue
+
+                text = child.cssselect("tr td:last-of-type")[0].text
+                sxn_author_content[author] = text
+            chapter_content.append({"section": sdx + 1, "content": sxn_author_content})
+        return chapter_content
 
 def parse(filename):
+    # FIXME, use lxml api to parse, maybe.
     author_content = dict()
     with open(filename, "rb") as fn:
         document = lh.parse(fn)
@@ -93,8 +113,16 @@ def parse(filename):
 
 
 def main():
+    parser = argparse.ArgumentParser(description="Parse wayist.org html")
+    parser.add_argument('--site', dest='site', default='', help='location of html files to parse')
+
+    args = parser.parse_args()
+    if not args.site:
+        raise parser.error("Please specify location of html files")
+
     authors = collections.OrderedDict()
-    for root, dirs, files in os.walk("./site/wayist.org/ttc compared"):
+    chapters = collections.OrderedDict()
+    for root, dirs, files in os.walk(args.site):
         current_dir = root.split('/')
         if current_dir[len(current_dir) - 1] in EXCLUDE_DIRS:
             continue
@@ -104,13 +132,20 @@ def main():
                 continue
 
             filename = os.path.join(root, f)
+            name = f.split('.')[0]
             if not f.startswith('chap'):
-                print >> sys.stdout, "Processing %s" % f
-                authors[f.split('.')[0]] = parse(filename)
+                authors[name] = parse(filename)
+            else:
+                content = parse_chapter(filename)
+                chapters[name] = content
 
     # Write out the authors
     with open(os.path.join(DATA_DIR, AUTHORS + EXTENSION), 'wb') as f:
         f.write(json.dumps(authors.keys()))
+
+    # .. and the chapters
+    with open(os.path.join(DATA_DIR, CHAPTERS + EXTENSION), 'wb') as f:
+        f.write(json.dumps(chapters.keys()))
 
     # For optimization purposes, each author translation of the book
     # is written out to a separate file, loaded when that translation
@@ -119,7 +154,11 @@ def main():
         with open(os.path.join(DATA_DIR, author + EXTENSION), 'wb') as f:
             f.write(json.dumps([authors.get(author)]))
 
-    print >> sys.stdout, "Processed %s authors" % len(authors.keys())
+    for chapter in chapters:
+        with open(os.path.join(DATA_DIR, chapter + EXTENSION), 'wb') as f:
+            f.write(json.dumps(chapters.get(chapter)))
+
+    print >> sys.stdout, "Processed %s authors, %s chapters" % (len(authors.keys()), len(chapters.keys()))
 
 if __name__ == '__main__':
     main()

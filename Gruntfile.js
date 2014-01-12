@@ -79,4 +79,5 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', ['smash:prod', 'uglify:prod', 'cssmin:prod', 'appcache']);
   grunt.registerTask('build', ['smash:prod', 'uglify:prod', 'cssmin:prod', 'appcache']);
+  grunt.registerTask('dev', ['smash:prod', 'uglify:prod', 'cssmin:prod']);
 };

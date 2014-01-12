@@ -25,7 +25,15 @@
               <a class="dropdown-toggle" data-toggle="dropdown">Authors <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li ng-repeat="author in authors()">
-                  <a ng-href="/wayist/#/{{author}}">{{author | capitalize}}</a>
+                  <a ng-href="/wayist/#/a/{{author}}">{{author | capitalize}}</a>
+                </li>
+              </ul>
+            </li>
+            <li class="dropdown" ng-controller="ChapterController">
+              <a class="dropdown-toggle" data-toggle="dropdown">Chapters <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li ng-repeat="chapter in chapters()">
+                  <a ng-href="/wayist/#/c/{{chapter}}">{{chapter | capitalize}}</a>
                 </li>
               </ul>
             </li>

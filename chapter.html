@@ -1,0 +1,15 @@
+
+<div class="bs-docs-section">
+  <div class="panel panel-default" ng-repeat="section in sections()">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Verse {{section.name}}</div>
+    <div class="table-responsive">
+      <table class="table">
+        <tr ng-repeat="content in section.content">
+          <td>{{content.author}}</td>
+          <td>{{content.text}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

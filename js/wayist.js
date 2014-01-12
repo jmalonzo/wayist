@@ -2,14 +2,18 @@
 var wayist = angular.module('wayist', ['ngRoute'])
     .config(["$routeProvider", function($routeProvider) {
       $routeProvider
-        .when('/:author', {
-          controller: 'ContentController',
+        .when('/a/:author', {
+          controller: 'AuthorContentController',
           templateUrl: '/wayist/content.html'
+        })
+        .when('/c/:chapter', {
+          controller: 'ChapterContentController',
+          templateUrl: '/wayist/chapter.html'
         })
         .otherwise({
           redirectTo: function() {
             var author = window.localStorage.getItem('author');
-            return author ? "/" + author : "/beck";
+            return author ? "/a/" + author : "/beck";
           }
         });
     }]);
@@ -23,23 +27,59 @@ var wayist = angular.module('wayist', ['ngRoute'])
     };
   });
 
-  wayist.controller('ContentController', ["$scope", "$routeParams", "$http", function ($scope, $routeParams, $http) {
+  wayist.controller('ChapterContentController', ["$scope", "$routeParams", "$http", function($scope, $routeParams, $http) {
+    var section,
+        sectionContent;
+    $scope.sectionList = [];
+    $http.get("/wayist/data/" + $routeParams.chapter + ".json")
+      .success(function(response) {
+        for (var i = 0; i < response.length; i++) {
+          section = response[i];
+          sectionContent = [];
+          for (var c in section.content) {
+            if (!section.content.hasOwnProperty(c)) {
+              continue;
+            }
+            sectionContent.push({author: c, text: section.content[c]});
+          }
+          $scope.sectionList.push({name: section.section, content: sectionContent.sort(comparator)});
+        }
+      })
+      .error(function() {
+        // Do something here
+      });
+
+    $scope.sections = function() {
+      return $scope.sectionList;
+    };
+    $scope.orderPredicate = 'author';
+
+    function comparator (a,b) {
+      if (a.author > b.author) return 1;
+      if (a.author < b.author) return -1;
+      return 0;
+    }
+
+  }]);
+
+  wayist.controller('AuthorContentController', ["$scope", "$routeParams", "$http", function ($scope, $routeParams, $http) {
     var authorContent = [];
     $scope.author = $routeParams.author;
-    $http.get("/wayist/data/" + $routeParams.author + ".json").success(function(response) {
-      var content = response[0];
-      for (var c in content) {
-        if (!content.hasOwnProperty(c)) {
-          continue;
-        }
-        authorContent.push(c + ". " + content[c]);
+    $http.get("/wayist/data/" + $routeParams.author + ".json")
+      .success(function(response) {
+        var content = response[0];
+        for (var c in content) {
+          if (!content.hasOwnProperty(c)) {
+            continue;
+          }
+          authorContent.push(c + ". " + content[c]);
 
-        // Store selected author in localStorage for future sessions
-        localStorage.setItem('author', $scope.author);
-      }
-    }).error(function() {
-      // Do something here
-    });
+          // Store selected author in localStorage for future sessions
+          localStorage.setItem('author', $scope.author);
+        }
+      }).error(function() {
+        // Do something here
+      });
 
     $scope.content = function() {
       return authorContent;
@@ -63,6 +103,20 @@ var wayist = angular.module('wayist', ['ngRoute'])
     $scope.selectedAuthor = function() {
       var author = window.localStorage.getItem('author');    
       return  author ? author : "by their respective authors.";
+    };
+  }]);
+
+  wayist.controller('ChapterController', ["$scope", "$http", function($scope, $http) {
+    $scope.chapterList = [];
+    $http.get("/wayist/data/chapters.json")
+      .success(function(response) {
+        $scope.chapterList = response;
+      }).error(function() {
+        // Do something here
+      });
+    
+    $scope.chapters = function() {
+      return $scope.chapterList;
     };
 
   }]);

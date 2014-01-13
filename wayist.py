@@ -59,12 +59,16 @@ def parse_chapter(filename):
         for sdx, section in enumerate(sections):
             sxn_author_content = dict()
             for idx, child in enumerate(section.iterchildren()):
-                author = child.cssselect("tr td:first-of-type strong")[0].text
                 if idx == 0:
                     # Chapter/section header
                     continue
 
-                text = child.cssselect("tr td:last-of-type")[0].text
+                for kdx, c in enumerate(child.iterchildren()):
+                    if kdx == 0:
+                        author = c.cssselect("strong")[0].text
+                    else:
+                        text = "".join(c.xpath("text()"))
+
                 sxn_author_content[author] = text
             chapter_content.append({"section": sdx + 1, "content": sxn_author_content})
         return chapter_content

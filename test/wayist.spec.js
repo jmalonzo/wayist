@@ -9,13 +9,13 @@ describe("wayist", function() {
     }));
   });
 
-  describe("ContentController", function() {
+  describe("AuthorContentController", function() {
     var $httpBackend, $rootScope, scope;
     beforeEach(inject(function(_$rootScope_, _$httpBackend_, $controller) {
       $httpBackend = _$httpBackend_;
       $rootScope = _$rootScope_;
       scope  = $rootScope.$new();
-      $controller("ContentController", {
+      $controller("AuthorContentController", {
         $scope: scope,
         $routeParams: {"author": "wu"}
       });

@@ -13,7 +13,7 @@ var wayist = angular.module('wayist', ['ngRoute'])
         .otherwise({
           redirectTo: function() {
             var author = window.localStorage.getItem('author');
-            return author ? "/a/" + author : "/beck";
+            return author ? "/a/" + author : "/a/beck";
           }
         });
     }]);
@@ -86,7 +86,7 @@ var wayist = angular.module('wayist', ['ngRoute'])
     };
   }]);
 
-  wayist.controller('AuthorController', ["$scope", "$http", function($scope, $http) {
+  wayist.controller('AuthorController', ["$scope", "$http", "$routeParams", function($scope, $http, $routeParams) {
     // Initialize the data
     $scope.authorList = [];
     $http.get("/wayist/data/authors.json")
@@ -101,8 +101,7 @@ var wayist = angular.module('wayist', ['ngRoute'])
     };
 
     $scope.selectedAuthor = function() {
-      var author = window.localStorage.getItem('author');    
-      return  author ? author : "by their respective authors.";
+      return  $routeParams.author ? $routeParams.author : "by their respective authors.";
     };
   }]);
 

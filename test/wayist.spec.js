@@ -41,7 +41,8 @@ describe("wayist", function() {
       $rootScope = _$rootScope_;
       scope  = $rootScope.$new();
       $controller("AuthorController", {
-        $scope: scope
+        $scope: scope,
+        $routeParams: {"chapter": "chap01"}
       });
 
       origLocalStorage = window.localStorage;
@@ -77,10 +78,6 @@ describe("wayist", function() {
 
     it("should be able to return copyright text", function() {
       expect(scope.selectedAuthor()).toEqual("by their respective authors.");
-      expect(window.localStorage.getItem).toHaveBeenCalled();
-      window.localStorage.setItem('author', 'Wu');
-      expect(scope.selectedAuthor()).toEqual('Wu');
-      expect(window.localStorage.getItem).toHaveBeenCalled();
     });
   });
 });

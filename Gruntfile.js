@@ -59,7 +59,7 @@ module.exports = function(grunt) {
           'content.html',
           'css/way.min.css',
           'js/way.min.js',
-          'js/way.min.js.map',
+          'js/way.min.map',
           'data/*.json'
         ],
         network: '*'

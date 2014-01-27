@@ -1,12 +1,12 @@
 CACHE MANIFEST
-# rev 17 - 2014-01-26T07:26:08.721Z
+# rev 18 - 2014-01-27T07:13:28.975Z
 
 CACHE:
 index.html
 content.html
 css/way.min.css
 js/way.min.js
-js/way.min.js.map
+js/way.min.map
 data/authors.json
 data/beck.json
 data/blackney.json

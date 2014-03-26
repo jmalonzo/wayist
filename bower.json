@@ -18,9 +18,9 @@
   ],
   "dependencies": {
     "jquery": "2",
-    "angular": "1.2.14",
-    "angular-route": "1.2.14",
-    "angular-mocks": "1.2.14",
+    "angular": "1.2.15",
+    "angular-route": "1.2.15",
+    "angular-mocks": "1.2.15",
     "jasmine": "2",
     "bootstrap": "3"
   }
